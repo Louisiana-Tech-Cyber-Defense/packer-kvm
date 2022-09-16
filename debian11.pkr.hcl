@@ -105,8 +105,8 @@ build {
     inline          = ["apt -y remove ansible", "apt-get clean", "apt-get -y autoremove --purge"]
   }
 
-  post-processor "shell-local" {
-    environment_vars = ["IMAGE_NAME=${var.name}", "IMAGE_VERSION=${var.version}", "DESTINATION_SERVER=${var.destination_server}"]
-    script           = "scripts/push-image.sh"
-  }
+#  post-processor "shell-local" {
+#    environment_vars = ["IMAGE_NAME=${var.name}", "IMAGE_VERSION=${var.version}", "DESTINATION_SERVER=${var.destination_server}"]
+#    script           = "scripts/push-image.sh"
+#  }
 }

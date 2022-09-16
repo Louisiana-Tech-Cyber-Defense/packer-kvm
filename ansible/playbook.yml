@@ -5,3 +5,11 @@
   become: yes
   roles:
     - common
+
+- name: Hide data for nerds 
+  hosts: localhost
+  tasks:
+
+  - name: hide test flag into root dir
+    ansible.builtin.shell: echo "LTSEC{haha}" > /root/flag.txt
+

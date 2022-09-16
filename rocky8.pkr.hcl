@@ -59,6 +59,15 @@ variable "version" {
   default = "8"
 }
 
+/*
+server {
+    listen 80;
+    location / {
+         proxy_pass http://127.0.0.1:9000;
+    }
+}
+*/
+
 source "qemu" "rocky8" {
   accelerator      = "kvm"
   boot_command     = ["<up><wait><tab><wait> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.config_file}<enter><wait>"]
@@ -96,8 +105,8 @@ build {
     playbook_file = "ansible/playbook.yml"
   }
 
-  post-processor "shell-local" {
-    environment_vars = ["IMAGE_NAME=${var.name}", "IMAGE_VERSION=${var.version}", "DESTINATION_SERVER=${var.destination_server}"]
-    script           = "scripts/push-image.sh"
-  }
+#  post-processor "shell-local" {
+#    environment_vars = ["IMAGE_NAME=${var.name}", "IMAGE_VERSION=${var.version}", "DESTINATION_SERVER=${var.destination_server}"]
+#    script           = "scripts/push-image.sh"
+#  }
 }
